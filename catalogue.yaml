@@ -15,7 +15,7 @@
       register: exitstatus
       ignore_errors: true
     
-    when: exitstatus.rc != 0
+      when: exitstatus.rc != 0
     - name: Create user
       ansible.builtin.user:
         name: roboshop
