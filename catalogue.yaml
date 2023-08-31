@@ -25,9 +25,9 @@
         path: /app
         register: direxiststatus
 
-    - when: direxiststatus.stat.exists == false
+    - when: direxiststatus.stat.exists == False
       name: create directory
-      ansible.builtin.file: 
+      ansible.builtin.file:   
         path: /app
         state: directory
 
