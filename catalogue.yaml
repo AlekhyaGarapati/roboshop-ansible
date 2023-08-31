@@ -15,8 +15,8 @@
       register: exitstatus
       ignore_errors: true
     
-      when: exitstatus.rc != 0
-    - name: Create user
+    - when: exitstatus.rc != 0
+      name: Create user
       ansible.builtin.user:
         name: roboshop
 
@@ -25,8 +25,8 @@
         path: /app
         register: direxiststatus
 
-      when: direxiststatus.stat.exists == false
-    - name: create directory
+    - when: direxiststatus.stat.exists == false
+      name: create directory
       ansible.builtin.file: 
         path: /app
         state: directory
