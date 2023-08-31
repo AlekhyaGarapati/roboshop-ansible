@@ -44,8 +44,8 @@
 
     - name: Downlaod Dependencies
       ansible.builtin.command: npm install
-        args:
-          chdir: /app
+      args:
+        chdir: /app
             
     - name: Copy Catalogue Service
       ansible.builtin.copy:
