@@ -1,0 +1,8 @@
+[web]
+web.robokart.online
+
+[mongodb]
+mongodb.robokart.online
+
+[catalogue]
+catalogue.robokart.online
