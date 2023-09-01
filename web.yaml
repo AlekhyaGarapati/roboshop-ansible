@@ -28,8 +28,8 @@
         url: https://roboshop-builds.s3.amazonaws.com/web.zip
         dest: /tmp/web.zip 
 
-    - name: unzip front end conent to html folder
-      ansible.builtin.archive:
+    - name: unzip frontend conent to html folder
+      ansible.builtin.unarchive:
         src: /tmp/web.zip
         dest: /usr/share/nginx/html
         remote_src: yes        
