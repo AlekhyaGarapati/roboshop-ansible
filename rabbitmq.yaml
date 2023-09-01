@@ -21,9 +21,9 @@
     
     - name: Verify and Add user roboshop if doesnot exist
       ansible.builtin.command: id roboshop
-      register: exitstaus
+      register: exitstatus
       ignore_errors: yes
-    - when: existstaus.rc != 0
+    - when: exitstatus.rc != 0
       name: add user
       ansible.builtin.shell: rabbitmqctl add_user roboshop roboshop123
 
