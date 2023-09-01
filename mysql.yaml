@@ -7,8 +7,8 @@
     
     - name: Copying mysql.repo to /etc/yum.repos.d folder
       ansible.builtin.copy:
-      src:  mysql.repo
-      dest:  /etc/yum.repos.d
+        src:  mysql.repo
+        dest:  /etc/yum.repos.d
 
     - name: Install MySQL Server
       ansible.builtin.yum:
