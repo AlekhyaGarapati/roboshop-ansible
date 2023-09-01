@@ -1,0 +1,16 @@
+- name: Installing and Configuring redis database
+  host: redis
+  become: yes
+  tasks:
+    - name: Installing redis from rpm
+      ansible.builtin.yum:
+        name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+        state: present
+
+    - name: enable redis 6.2 module from package streams
+      ansible.builtin.command: yum module enable redis:remi-6.2 -y
+
+    - name: Installing redis
+      ansible.builtin.yum:
+        name: redis
+        state: installed

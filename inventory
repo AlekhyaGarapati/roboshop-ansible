@@ -6,3 +6,12 @@ mongodb.robokart.online
 
 [catalogue]
 catalogue.robokart.online
+
+[redis]
+redis.robokart.online
+
+[mysql]
+mysql.robokart.online
+
+[rabbitmq]
+rabbitmq.robokart.online
