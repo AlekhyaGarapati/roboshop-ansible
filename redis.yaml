@@ -1,5 +1,5 @@
 - name: Installing and Configuring redis database
-  host: redis
+  hosts: redis
   become: yes
   tasks:
     - name: Installing redis from rpm
