@@ -14,18 +14,25 @@
       ansible.builtin.yum:
         name: redis
         state: installed
-
-    - name: Replace 127.0.0.1 to 0.0.0.0 in /etc/redis.conf 
+    - name: Replace 127.0.0.1 to 0.0.0.0 in /etc/redis.conf & /etc/redis/redis.conf
       ansible.builtin.replace:
-        path: /etc/redis.conf
+        path: "{{ item }}"
         regexp: '127.0.0.1'
         replace: '0.0.0.0'
+      loop:
+        -  /etc/redis.conf
+        -  /etc/redis/redis.conf
+    # - name: Replace 127.0.0.1 to 0.0.0.0 in /etc/redis.conf 
+    #   ansible.builtin.replace:
+    #     path: /etc/redis.conf
+    #     regexp: '127.0.0.1'
+    #     replace: '0.0.0.0'
 
-    - name: Replace 127.0.0.1 to 0.0.0.0 in /etc/redis/redis.conf
-      ansible.builtin.replace:
-        path: /etc/redis/redis.conf
-        regexp: '127.0.0.1'
-        replace: '0.0.0.0'  
+    # - name: Replace 127.0.0.1 to 0.0.0.0 in /etc/redis/redis.conf
+    #   ansible.builtin.replace:
+    #     path: /etc/redis/redis.conf
+    #     regexp: '127.0.0.1'
+    #     replace: '0.0.0.0'  
 
     - name: Enable & Start Redis
       ansible.builtin.service:
