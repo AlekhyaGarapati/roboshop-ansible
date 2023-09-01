@@ -2,7 +2,7 @@
   hosts: mysql
   become: yes
   tasks:
-    - name: Disbaling mysql default version in centos
+    - name: Disabling mysql default version in centos
       ansible.builtin.command: yum module disable mysql -y 
     
     - name: Copying mysql.repo to /etc/yum.repos.d folder
@@ -10,7 +10,7 @@
         src:  mysql.repo
         dest:  /etc/yum.repos.d
 
-    - name: Install MySQL Server
+    - name: Install MySQL Servers
       ansible.builtin.yum:
         name: mysql-community-server 
         state: present
