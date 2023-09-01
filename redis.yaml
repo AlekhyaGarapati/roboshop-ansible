@@ -28,7 +28,7 @@
         replace: '0.0.0.0'  
 
     - name: Enable & Start Redis
-      ansible.yum.service:
+      ansible.builtin.service:
         name: redis
         state: started
         enabled: yes         
