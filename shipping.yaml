@@ -65,6 +65,6 @@
        
     - name: Restart the Service
       ansible.builtin.service:
-        name: shippings
+        name: shipping
         state: restarted
         enabled: true
