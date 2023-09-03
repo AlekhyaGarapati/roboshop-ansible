@@ -31,7 +31,7 @@
         state: directory
 
     - name: Download the application code to created app directory.
-      ansible.builtin.get-url:
+      ansible.builtin.get_url:
         url: https://roboshop-builds.s3.amazonaws.com/user.zip
         dest: /tmp/user.zip
 
