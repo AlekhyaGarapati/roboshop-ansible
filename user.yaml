@@ -38,8 +38,8 @@
     - name: Unzip the file
       ansible.builtin.unarchive:
         src: /tmp/user.zip
-          dest: /app
-      remote_src: yes
+        dest: /app
+        remote_src: yes
 
     - name: download the dependencies.
       ansible.builtin.command: npm install
