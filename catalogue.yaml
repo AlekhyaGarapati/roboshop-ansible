@@ -42,7 +42,7 @@
         dest: /app
         remote_src: yes
 
-    - name: Downlaod Dependencies
+    - name: Download Dependencies
       ansible.builtin.command: npm install
       args:
         chdir: /app
@@ -56,7 +56,7 @@
       ansible.builtin.systemd:
         daemon-reload: true
     
-    - name: Enable and Start the Service
+    - name: Enable and Start the Service  
       ansible.builtin.service:
         name: catalogue
         state: started
@@ -80,4 +80,5 @@
         name: catalogue
         state: restarted
         enabled: true
+        
       
