@@ -22,7 +22,7 @@
       register: dirstatus
       ignore_errors: yes
 
-    - when dirstatus.stat.exists == false
+    - when: dirstatus.stat.exists == false
       name: add /app directory
       ansible.builtin.file:
         src: /app
@@ -64,6 +64,6 @@
 
   - name: Restart the Service
     ansible.builtin.service:
-      name: shipping
+      name: shippings
       state: restarted
   
