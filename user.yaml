@@ -74,8 +74,13 @@
         state: present
 
     - name: Load Schema
-      ansible.builtin.shell: mongo --host mongodb.robokart.online < /app/schema/user.js
+      ansible.builtin.command: mongo --host mongodb.robokart.online < /app/schema/user.js
 
+    - name: restart user
+      ansible.builtin.service:
+        name: user
+        state: restarted
+        enabled: true
 
 
 
