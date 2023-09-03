@@ -13,6 +13,7 @@
     - name: verify and add user roboshop if not available already
       ansible.builtin.command: id roboshop
       register: exitstatus
+      ignore_errors: yes
 
     - when: exitstatus.rc != 0
       name: add user
@@ -23,7 +24,8 @@
       ansible.builtin.stat:
         path: /app
       register: dirstatus
-
+      ignore_errors: yes
+      
     - when: dirstatus.stat.exists == false
       name: add directory
       ansible.builtin.file:
