@@ -19,9 +19,10 @@
 
     - name: verify and add /app directory if doesn't exists
       ansible.builtin.stat:
+        path: /app
       register: dirstatus
       ignore_errors: yes
-
+    
     - when: dirstatus.stat.exists == false
       name: add /app directory
       ansible.builtin.file:
