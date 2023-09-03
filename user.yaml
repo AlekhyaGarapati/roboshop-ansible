@@ -51,7 +51,7 @@
     - name: copy user.service to etc/systemd/system
       ansible.builtin.copy:
         src: user.service
-        dest: etc/systemd/system/
+        dest: etc/systemd/system/user.service
    
     - name: Load the service
       ansible.builtin.systemd:
