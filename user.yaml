@@ -17,7 +17,7 @@
     - when: exitstatus.rc != 0
       name: add user
       ansible.builtin.user:
-      name: roboshop
+        name: roboshop
     
     - name: setup app directory if no app dirrcetory already exists
       ansible.builtin.stat:
