@@ -50,8 +50,8 @@
     
     - name: Set SystemD Cart Service
       ansible.builtin.copy:
-      src: cart.service
-      dest: /etc/systemd/system/cart.service
+        src: cart.service
+        dest: /etc/systemd/system/cart.service
     
     - name: Load the service.
       ansible.builtin.systemd:
