@@ -15,3 +15,18 @@ mysql.robokart.online
 
 [rabbitmq]
 rabbitmq.robokart.online
+
+[user]
+user.robokart.online
+
+[cart]
+cart.robokart.online
+
+[shipping]
+shipping.robokart.online
+
+[payment]
+payment.robokart.online
+
+[dispatch]
+dispatch.robokart.online

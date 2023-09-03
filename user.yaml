@@ -1,0 +1,82 @@
+- name: Installing and Configuring user module
+  hosts: user
+  become: yes
+  tasks:
+    - name: Setup NodeJS repos. Vendor is providing a script to setup the repos.
+      ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+
+    - name: Install nodejs
+      ansible.builtin.yum:
+        name: nodejs
+        state: Installed
+
+    - name: verify and add user roboshop if not available already
+      ansible.builtin.command: id roboshop
+      register: exitstatus
+
+    - when: exitstatus.rc != 0
+      name: add user
+      ansible.builtin.user:
+      name: roboshop
+    
+    - name: setup app directory if no app dirrcetory already exists
+      ansible.builtin.stat:
+      path: /app
+      register: dirstatus
+
+    - when: dirstatus.stat.exists == false
+      name: add directory
+      ansible.builtin.file:
+      path: /app
+      state: directory
+
+    - name: Download the application code to created app directory.
+      ansible.builtin.get-url:
+      url: https://roboshop-builds.s3.amazonaws.com/user.zip
+      dest: /tmp/user.zip
+
+    - name: Unzip the file
+      ansible.builtin.unarchive:
+      src: /tmp/user.zip
+      dest: /app
+      remote_src: yes
+
+    - name: download the dependencies.
+      ansible.builtin.command: npm install
+      args: 
+        chdir:/app
+
+    - name: copy user.service to etc/systemd/system
+      ansible.builtin.copy:
+      src: user.service
+      dest: etc/systemd/system/
+   
+    - name: Load the service
+      ansible.builtin.command: systemctl daemon-reload
+
+    - name: Enable and Start User Service
+      ansible.builtin.service:
+      name: user
+      state: started
+      enabled: true
+    
+    - name: Copy mongo repo to install mongodb cleint and Load Schema to database
+      ansible.builtin.copy:
+      src: mongo.repo
+      dest: /etc/yum.repos.d/mongo.repo
+
+    - name: Install mongo db client
+      ansible.builtin.yum:
+      name: mongodb-org-shell
+      state: present
+
+    - name: Load Schema
+      ansible.builtin.command: mongo --host mongodb.robokart.online < /app/schema/user.js
+
+
+
+
+
+
+        
+
