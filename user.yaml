@@ -54,7 +54,8 @@
         dest: etc/systemd/system/
    
     - name: Load the service
-      ansible.builtin.command: systemctl daemon-reload
+      ansible.builtin.systemd:
+        daemon-reload: true
 
     - name: Enable and Start User Service
       ansible.builtin.service:
