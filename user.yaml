@@ -74,7 +74,7 @@
         state: present
 
     - name: Load Schema
-      ansible.builtin.command: mongo --host mongodb.robokart.online < /app/schema/user.js
+      ansible.builtin.shell: mongo --host mongodb.robokart.online < /app/schema/user.js
 
 
 
