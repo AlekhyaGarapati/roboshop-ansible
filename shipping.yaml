@@ -32,13 +32,24 @@
     - name: Download the application code to created app directory.
       ansible.builtin.get_url:
         url: https://roboshop-builds.s3.amazonaws.com/shipping.zip
-        dest: /tmp/shipping.zip 
+        dest: /tmp
 
     - name: unarchive shipping.zip
       ansible.builtin.unarchive:
         src: /tmp/shipping.zip
         dest: /app
         remote_src: yes
+    
+    - name: maven package
+      ansible.builtin.command: mvn clean package
+      args:
+        chdir: /app
+    
+    - name: rename jar file
+      ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
+      args: 
+        chdir: /app
+
 
     - name: Setup SystemD Shipping Service
       ansible.builtin.copy:
