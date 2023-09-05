@@ -1,5 +1,5 @@
- name: Installing and Configuring rabbitmq
-  hosts: local host  
+- name: Installing and Configuring rabbitmq
+  hosts: localhost  
   become: yes
   tasks:
     - name: Configuring Yum repos from script provided by vendor
