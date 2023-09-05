@@ -1,0 +1,14 @@
+ name: Installing and Configuring rabbitmq
+  hosts: rabbitmq
+  become: yes
+  tasks:
+    - name: Configuring Yum repos from script provided by vendor
+      ansible.builtin.command: "{{ item }}"
+      loop:
+        - curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
+        - curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+    
+    - name: Install RabbitMQ
+      ansible.builtin.yum:
+        name: rabbitmq-server 
+        state: present
